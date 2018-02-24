@@ -1,0 +1,210 @@
+<Doctype Html>
+
+
+<html>
+
+
+<head>
+
+<title>Crystals</title>
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+
+
+
+      <div class="video-background">
+            <div class="video-foreground">
+              <iframe src="https://www.youtube.com/embed/W0LHTWG-UmQ?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+        
+        <div id="vidtop-content">
+        <div class="vid-info">
+              <h1>Crystals Collector!</h1>
+              <p> Try to match the PC number by clicking on the crystals</p>
+          
+          
+              <div class="container">
+            
+                    <div class="row mb-5">
+            
+                        <div class="col-md-6 border text-center .bg-light">
+                            <h2>PC Number</h2>
+                            <h2 id="pc_number">0</h2>
+                        </div>
+                
+                
+                        <div class="col-md-6 border text-center">
+                            <h2>Your Number</h2>
+                         <h2 id="user_number">0</h2> 
+                        </div>
+                    </div>
+            
+                    <div class="row mb-5">
+            
+                    <div class="col-md-6 border text-center">
+                        <h2>Wins</h2>
+                     <h2 id="wins">0</h2> 
+                    </div>
+            
+            
+                    <div class="col-md-6 border text-center">
+                        <h2>Loses</h2>
+                        <h2 id="loses">0</h2>
+                    </div>
+                </div>
+            
+            
+            
+                    <p class="lead text-center">
+                      <a class="btn btn-primary btn-lg" href="#" role="button"  value="1" id="crystal1">Crystal 1</a>
+                      <a class="btn btn-primary btn-lg" href="#" role="button"  value="2" id="crystal2">Crystal 2</a>
+                      <a class="btn btn-primary btn-lg" href="#" role="button"  value="3" id="crystal3">Crystal 3</a>
+                      <a class="btn btn-primary btn-lg" href="#" role="button"  value="4" id="crystal4">Crystal 4</a>
+                    </p>
+                  </div>
+          
+          
+          
+          
+          
+          
+          
+          
+            </div>
+        </div>
+      
+
+</body>
+
+
+</html>
+
+<script>
+
+window.onload = function() {
+      
+crystals= {
+pc:0,
+user:0,
+wins:0,
+loses:0,
+}
+
+re_start()
+} 
+
+
+function re_start() {
+
+crystals.user=0
+crystals.pc=Math.floor((Math.random() * 120) + 1)
+$("#crystal1").attr("value",Math.floor((Math.random() * 12) + 1))
+$("#crystal2").attr("value",Math.floor((Math.random() * 12) + 1))
+$("#crystal3").attr("value",Math.floor((Math.random() * 12) + 1))
+$("#crystal4").attr("value",Math.floor((Math.random() * 12) + 1))
+$("#pc_number").text(crystals.pc)
+$("#user_number").text(crystals.user)
+
+}
+
+
+
+$(".btn").on("click", function(){
+
+console.log($(this).attr("value"))
+
+crystals.user=crystals.user*1+$(this).attr("value")*1
+
+
+$("#pc_number").text(crystals.pc)
+
+$("#user_number").text(crystals.user)
+
+
+if (crystals.pc===crystals.user){
+
+
+crystals.wins++
+$("#wins").text(crystals.wins)
+alert("you win")
+re_start()
+
+}
+
+
+if (crystals.pc<crystals.user){
+
+
+crystals.loses++
+$("#loses").text(crystals.loses)
+alert("you lose")
+re_start()
+
+
+}
+
+
+})
+
+
+</script>
+
+
+<style>
+
+
+
+* { box-sizing: border-box; }
+.video-background {
+  background: #000;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#vidtop-content {
+	top: 0;
+	color: #fff;
+}
+.vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: Avenir, Helvetica, sans-serif; }
+.vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+.vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
+@media (min-aspect-ratio: 16/9) {
+  .video-foreground { height: 300%; top: -100%; }
+}
+@media (max-aspect-ratio: 16/9) {
+  .video-foreground { width: 300%; left: -100%; }
+}
+@media all and (max-width: 600px) {
+.vid-info { width: 50%; padding: .5rem; }
+.vid-info h1 { margin-bottom: .2rem; }
+}
+@media all and (max-width: 500px) {
+.vid-info .acronym { display: none; }
+}
+</style>
+
+
+
+
+
+
+</Doctype>
